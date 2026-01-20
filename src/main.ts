@@ -30,6 +30,15 @@ import { ResponseInterceptor } from './common/interceptors/response.interceptor'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'https://voduyquang.com',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -38,12 +47,6 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     }),
   );
-
-  app.enableCors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  });
-
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;
