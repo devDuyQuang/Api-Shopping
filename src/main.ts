@@ -39,6 +39,11 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  });
+
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;

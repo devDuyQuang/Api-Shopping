@@ -67,21 +67,16 @@ export class AuthService {
     }
 
     async register(dto: RegisterDto) {
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(dto.password, saltRounds);
-
-        const created = await this.usersService.create({
-            ...dto,
-            password: hashedPassword,
-        } as any);
+        const created = await this.usersService.create(dto as any);
 
         return {
             id: created._id.toString(),
             email: created.email,
             fullName: created.fullName,
-            role: (created as any).role || 'user',
+            role: (created as any).role || "user",
         };
     }
+
     async refresh(refreshToken: string) {
         try {
             const payload = await this.jwtService.verifyAsync<JwtPayload>(refreshToken, {

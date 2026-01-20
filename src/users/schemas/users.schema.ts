@@ -12,7 +12,7 @@ export class Users {
     @Prop({ required: true, unique: true })
     email: string;
 
-    @Prop({ required: true, }) // select : false => ẩn password 
+    @Prop({ required: true, select: false }) // select : false => ẩn password 
     password: string;
     // @Prop({ required: true, select: false })
     // password: string; 

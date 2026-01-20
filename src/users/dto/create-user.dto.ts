@@ -8,6 +8,7 @@ import {
     Matches,
     IsEnum,
     IsOptional,
+    IsBoolean,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -39,4 +40,8 @@ export class CreateUserDto {
     @IsEnum(['user', 'admin'], { message: 'Role không hợp lệ' })
     @IsOptional()
     role?: 'user' | 'admin' = 'user'; // default 'user'
+
+    @IsOptional()
+    @IsBoolean()
+    isActive?: boolean;
 }
