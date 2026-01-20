@@ -31,13 +31,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'https://voduyquang.com',
-    ],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
+
 
   app.useGlobalPipes(
     new ValidationPipe({
