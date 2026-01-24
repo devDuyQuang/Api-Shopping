@@ -15,9 +15,9 @@ async function seed() {
     await mongoose.connect(process.env.MONGODB_URI as string);
     console.log('✅ Connected MongoDB Atlas');
 
-    await CategoryModel.deleteMany({});
+    // await CategoryModel.deleteMany({});
     await ProductModel.deleteMany({});
-    await UserModel.deleteMany({});
+    // await UserModel.deleteMany({});
 
     // 1️⃣ CREATE ADMIN
     const password = await bcrypt.hash('Test@1234', 10);
